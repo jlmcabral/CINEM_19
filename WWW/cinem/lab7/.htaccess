@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Cinem.Lab7"
+AuthUserFile /home/alunos/1140471/.htpasswd
+Require valid-user
