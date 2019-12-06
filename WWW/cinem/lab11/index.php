@@ -8,20 +8,16 @@
     <link rel="stylesheet" href="styles/home.css">
 </head>
 <body>
-<p>test</p>
 <?php
+
+    include("functions.php");
+
     print "<h1>Lista de Produtos</h1>\n";
-    Include("functions.php");
-    print "<h1>Lista de Produtos</h1>\n";
-
-
-    // $conn = ligaDB();
-    // listProdutos($conn);
-
+    
+    $conn = ligaDB();
+    listProdutos($conn);
 
 
 ?>
-
-
 </body>
 </html>

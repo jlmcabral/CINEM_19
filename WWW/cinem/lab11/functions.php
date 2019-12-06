@@ -1,24 +1,7 @@
-<html>
-
-<table>
-    <tr>
-        <td>test</td>
-        <td>test1</td>
-        <td>test1</td>
-    </tr>
-    <tr>
-        <td>test</td>
-        <td>test1</td>
-        <td>test1</td>
-    </tr>
-</table>
-
-</html>
-
 <?php 
 
 // Returns a connection to the DB
-private function ligaDB()
+function ligaDB() 
 {
     $connection = new mysqli("ave.dee.isep.ipp.pt", "1140471", "admin", "cinem1140471");
     if ($connection->connect_error) {
@@ -30,7 +13,7 @@ private function ligaDB()
 
 
 
-public function listProdutos($conn)
+function listProdutos($conn)
 {
     $query = "SELECT * FROM Produtos";
     $result = $conn->query($query);
