@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include("header.php");?> 
+<?php include("functions.php");?> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Microgreens Porto - Conta</title>
+    <title>Microgreens Porto - Produtos</title>
     <link rel="stylesheet" href="styles/home.css">
 </head>
 <body>
@@ -13,13 +14,10 @@
 <?php printHeaderMenu();?>
 
 <?php
-    // include("functions.php");
-
-
-    print "<h1>Conta de utilizador</h1>\n";
-    // listProducts();
+    print "<h1>Lista de Produtos</h1>\n";
+    // $conn = ligaDB();
+    listProducts();
     
-
 ?>
 
    <footer>
