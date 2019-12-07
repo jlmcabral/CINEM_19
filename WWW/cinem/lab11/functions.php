@@ -4,13 +4,13 @@
 function ligaDB() 
 {
     $connection = new mysqli("ave.dee.isep.ipp.pt", "1140471", "admin", "cinem1140471");
-    if ($connection->connect_error) {
+    if ($connection->connect_error)
+    {
         die("Connection failed: " . $connection->connect_error);
     }
 
     return $connection;
 }
-
 
 
 function listProdutos($conn)

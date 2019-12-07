@@ -19,5 +19,10 @@
 
 
 ?>
+
+   <footer>
+      <p>&copy; Microgreens Porto <?php echo date("Y");?>. Todos os direitos reservados.</p>
+      <p><a href="mailto:contact@microgreensporto.com">contact@microgreensporto.com</a></p>
+   </footer>
 </body>
 </html>
