@@ -17,8 +17,22 @@ function listProducts()
 {
     $conn = ligaDB();
     $query = "SELECT * FROM Produtos";
-    $ordem = $_GET['order'];
-    if ($ordem != "") $query .= "ORDER BY $order";
+    $filter = $_GET['filter'];
+    if ($filter != "") $query .= " WHERE CONCAT (Produtos.Sku,Produtos.Nome,Produtos.Nome_cientifico) LIKE '%$filter%'";
+    $orderBy = $_GET['order'];
+    if ($orderBy != "") $query .= " ORDER BY Produtos.$orderBy";
+    
+    print "<p>$orderBy</p>";
+
+    print "<form method=GET action=products.php>";
+    print "  <input type=hidden name='order' value='$orderBy'>";
+    print "  Filtro:";
+    print "  <input name='filter' value='".$_GET['filter']."' size=8>";
+    print "  <input type=submit value='>'>";
+    print "</form>";
+
+
+    print "<p>$query</p>";
 
     $result = $conn->query($query);
 
@@ -28,7 +42,7 @@ function listProducts()
         $row = $result->fetch_assoc();
         print "<tr> \n";
         foreach($row as $name => $val) {
-            print "<th>$name</th> \n";
+            print "<th>". orderTableBySelectingTableHeader( $name, $filter ) ."</th> \n";
         }
         print "</tr> \n";
         $result->data_seek(0);
@@ -81,9 +95,12 @@ function previousPage( $label )
     print "<a href='#' onclick='history.go(-1)'> $label </a>\n";
 }
 
-function orderTable( $name ) 
-{
-   return "<a href='?order=$name'"; 
+function orderTableBySelectingTableHeader( $orderField, $filter ) 
+{   
+    $order = $orderField . "&amp;filter=$filter";
+    return "<a href='?order=$order'> $orderField</a>"; 
 }
+
+
 
 ?>
