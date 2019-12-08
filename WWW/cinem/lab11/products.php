@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<?php 
+    session_start();
+    foreach ($_GET as $key => $val) {
+        $_SESSION[$key] = $val;
+    }
+?>
 <?php include("header.php");?> 
-<?php include("functions.php");?> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Microgreens Porto - Produtos</title>
+    <title>Microgreens Porto - <?php print translate(Products);?></title>
     <link rel="stylesheet" href="styles/home.css">
 </head>
 <body>
@@ -20,9 +24,8 @@
     
 ?>
 
-   <footer>
-      <p>&copy; Microgreens Porto <?php echo date("Y");?>. Todos os direitos reservados.</p>
-      <!-- <p><a href="mailto:contact@microgreensporto.com">contact@microgreensporto.com</a></p> -->
+    <footer>
+        <p>&copy; Microgreens Porto <?php echo date("Y");?>. <?php print translate(all_rights);?></p>
    </footer>
 </body>
 </html>

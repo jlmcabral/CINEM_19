@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<?php 
+    session_start();
+    foreach ($_GET as $key => $val) {
+        $_SESSION[$key] = $val;
+    }
+?>
 <?php include("header.php");?> 
 <head>
     <meta charset="UTF-8">
@@ -11,7 +16,12 @@
 <body>
 
 <?php printHeaderMenu();?>
-
+<?php
+print "    <p>".translate(Lang).": ";
+print "      <a href='?lang=pt'>[Portugu&ecirc;s]</a>";
+print "      <a href='?lang=en'>[English]</a>";
+print "    </p>";
+?>
     <div class="center-piece">
         <img src="img/home-plant-med-no-prev.png" alt="Home microgreen">
 
@@ -30,9 +40,8 @@
 
 ?>
 
-   <footer>
-      <p>&copy; Microgreens Porto <?php echo date("Y");?>. Todos os direitos reservados.</p>
-      <!-- <p><a href="mailto:contact@microgreensporto.com">contact@microgreensporto.com</a></p> -->
-   </footer>
+    <footer>
+        <p>&copy; Microgreens Porto <?php echo date("Y");?>. <?php print translate(all_rights);?></p>
+    </footer>
 </body>
 </html>

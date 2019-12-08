@@ -18,7 +18,7 @@ function listProducts()
     $conn = ligaDB();
     $query = "SELECT * FROM Produtos";
     $filter = $_GET['filter'];
-    if ($filter != "") $query .= " WHERE CONCAT (Produtos.Sku,Produtos.Nome,Produtos.Nome_cientifico) LIKE '%$filter%'";
+    if ($filter != "") $query .= " WHERE CONCAT (Produtos.Sku,Produtos.Name,Produtos.Nome_cientifico) LIKE '%$filter%'";
     $orderBy = $_GET['order'];
     if ($orderBy != "") $query .= " ORDER BY Produtos.$orderBy";
     
@@ -26,8 +26,8 @@ function listProducts()
 
     print "<form method=GET action=products.php>";
     print "  <input type=hidden name='order' value='$orderBy'>";
-    print "  Filtro:";
-    print "  <input name='filter' value='".$_GET['filter']."' size=8>";
+    print translate(Filter);
+    print "  <input name='filter' value='".$_GET['filter']."' size=15>";
     print "  <input type=submit value='>'>";
     print "</form>";
 
@@ -52,7 +52,7 @@ function listProducts()
             foreach ($row as $val) {
                 print "<td>$val</td> \n";
             }
-            print "<td> <a href='product-page.php?sku=$row[0]'> +info </a> </td>\n";
+            print "<td> <a href='product-page.php?sku=$row[0]?lang=".$_SESSION['lang']."'> +info </a> </td>\n";
             print "</tr> \n";
         }//while
         print " </table> \n";
@@ -66,7 +66,8 @@ function listProducts()
 }
 
 function getProductDetails( $sku )
-{
+{   
+    print $sku;
     $conn = ligaDB();
     $query = "SELECT * FROM Produtos WHERE Sku = '$sku'";
 
@@ -98,9 +99,15 @@ function previousPage( $label )
 function orderTableBySelectingTableHeader( $orderField, $filter ) 
 {   
     $order = $orderField . "&amp;filter=$filter";
-    return "<a href='?order=$order'> $orderField</a>"; 
+    return "<a href='?order=$order'>".translate($orderField)."</a>"; 
 }
 
-
+function translate( $word )
+{
+    include ("ling.php");
+    if (isset( $Langs[$word][$_SESSION['lang']] ))
+        return $Langs[$word][$_SESSION['lang']];
+    return $word;
+}
 
 ?>
