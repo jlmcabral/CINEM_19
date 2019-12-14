@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <?php 
     session_start();
+    if($_SESSION["lang"]=="")
+        $_SESSION["lang"] = 'pt';
+    
     foreach ($_GET as $key => $val) {
         $_SESSION[$key] = $val;
     }
@@ -16,16 +19,9 @@
 <body>
 
 <?php printHeaderMenu();?>
-<?php
-print "    <p>".translate(Lang).": ";
-print "      <a href='?lang=pt'>[Portugu&ecirc;s]</a>";
-print "      <a href='?lang=en'>[English]</a>";
-print "    </p>";
-?>
+
     <div class="center-piece">
         <img src="img/home-plant-med-no-prev.png" alt="Home microgreen">
-
-
 
         <!-- <picture>
             <source media="(min-width: 650px)" srcset="img_pink_flowers.jpg">

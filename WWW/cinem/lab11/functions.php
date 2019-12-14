@@ -17,9 +17,10 @@ function listProducts()
 {
     $conn = ligaDB();
     $query = "SELECT * FROM Produtos";
-    $filter = $_GET['filter'];
+    
+    $filter = $_SESSION['filter'];
     if ($filter != "") $query .= " WHERE CONCAT (Produtos.Sku,Produtos.Name,Produtos.Nome_cientifico) LIKE '%$filter%'";
-    $orderBy = $_GET['order'];
+    $orderBy = $_SESSION['order'];
     if ($orderBy != "") $query .= " ORDER BY Produtos.$orderBy";
     
     print "<p>$orderBy</p>";
@@ -27,7 +28,7 @@ function listProducts()
     print "<form method=GET action=products.php>";
     print "  <input type=hidden name='order' value='$orderBy'>";
     print translate(Filter);
-    print "  <input name='filter' value='".$_GET['filter']."' size=15>";
+    print "  <input name='filter' value='".$_SESSION['filter']."' size=15>";
     print "  <input type=submit value='>'>";
     print "</form>";
 
@@ -52,22 +53,24 @@ function listProducts()
             foreach ($row as $val) {
                 print "<td>$val</td> \n";
             }
-            print "<td> <a href='product-page.php?sku=$row[0]?lang=".$_SESSION['lang']."'> +info </a> </td>\n";
+            print "<td> <a href='product-page.php?sku=$row[0]'> +info </a> </td>\n";
             print "</tr> \n";
         }//while
         print " </table> \n";
     }
     else
     {
+        print translate("No results");
         echo "0 resultados";
     }
 
     mysqli_close( $conn );
 }
 
-function getProductDetails( $sku )
+function getProductDetails()
 {   
-    print $sku;
+    $sku = $_SESSION['sku'];
+
     $conn = ligaDB();
     $query = "SELECT * FROM Produtos WHERE Sku = '$sku'";
 
@@ -79,21 +82,21 @@ function getProductDetails( $sku )
         print " <table> \n";
         print "<tr> \n";
         foreach($row as $fname => $val) {
-            print "<tr><th>$fname</th><td>$val</td><tr>\n";
+            print "<tr><th>".translate($fname)."</th><td>$val</td><tr>\n";
         }
         print "</tr> \n";
         print " </table> \n";
     }
     else
     {
-        echo "Sem dados sobre este produto";
+        print translate("No data");
     }
     mysqli_close( $conn );
 }
 
-function previousPage( $label )
+function previousPage()
 {
-    print "<a href='#' onclick='history.go(-1)'> $label </a>\n";
+    print "<a href='#' onclick='history.go(-1)'>".translate("Previous page")."</a>\n";
 }
 
 function orderTableBySelectingTableHeader( $orderField, $filter ) 

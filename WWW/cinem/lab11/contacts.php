@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <?php 
     session_start();
-    foreach ($_GET as $key => $val) {
-        $_SESSION[$key] = $val;
-    }
 ?>
 <?php include("header.php");?> 
 <head>

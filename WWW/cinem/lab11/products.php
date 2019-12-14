@@ -18,10 +18,9 @@
 <?php printHeaderMenu();?>
 
 <?php
-    print "<h1>Lista de Produtos</h1>\n";
+    print "<h1>".translate("List of").translate("Products")."</h1>\n";
     // $conn = ligaDB();
-    listProducts();
-    
+    listProducts();  
 ?>
 
     <footer>

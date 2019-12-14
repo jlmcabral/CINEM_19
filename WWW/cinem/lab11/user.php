@@ -18,11 +18,7 @@
 <?php printHeaderMenu();?>
 
 <?php
-
-    echo "test";
     print "<h1>".translate(User_account)."</h1>\n";
-    // listProducts();
-    
 
 ?>
 

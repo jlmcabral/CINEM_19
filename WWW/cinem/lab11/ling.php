@@ -14,5 +14,9 @@ $Langs['User_account']      = array('en'=>'User Account', 'pt'=>'Conta de utiliz
 $Langs['return']            = array('en'=>'Return to List', 'pt'=>'Voltar à lista');
 $Langs['all_rights']        = array('en'=>'All rights reserved.', 'pt'=>'Todos os direitos reservados.');
 $Langs['Filter']            = array('en'=>'Filter:', 'pt'=>'Filtro:');
+$Langs['List of']           = array('en'=>'List of ', 'pt'=>'Lista de ');
+$Langs['No results']        = array('en'=>'No results', 'pt'=>'Sem resultados');
+$Langs['No data']           = array('en'=>'No data was found about this product', 'pt'=>'Sem dados sobre este produto');
+$Langs['Previous page']     = array('en'=>'Previous page', 'pt'=>'P&aacute;gina anterior');
 
 ?>
