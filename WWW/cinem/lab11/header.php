@@ -21,6 +21,7 @@ function printHeaderMenu()
                 <li><a href='products.php'>".translate(Products)."</a></li>
                 <li><a href='contacts.php'>".translate(Contacts)."</a></li>
                 <li><a href='user.php'>".translate(User_account)."</a></li>
+                <li><a href='cart.php'>".translate("Cart-title")."</a></li>
             </ul>
         </div>
     ";
