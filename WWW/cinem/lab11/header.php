@@ -6,8 +6,6 @@ include ("functions.php");
 // Just for reusability purposes
 function printHeaderMenu()
 {   
-    
-
     // Menu
     print
     "   
@@ -46,5 +44,4 @@ function printHeaderMenu()
     </div>
     ";
 }
-
 ?> 

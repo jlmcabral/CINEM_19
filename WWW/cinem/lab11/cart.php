@@ -76,7 +76,7 @@
 <!-- Submeter encomenda -->
 <?php 
     print "<h2>". translate("Order"). "</h2>\n";
-    print "<form action='encomenda.php' method=GET>\n";
+    print "<form action='order.php' method=GET>\n";
     print translate("Email").  ": <input name=email> <br>\n";
     print translate("Name").  ": <input name=name> <br>\n";
     print translate("Address").  ": <input name=address> <br> \n";
