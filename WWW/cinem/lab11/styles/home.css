@@ -2,6 +2,14 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
+    font-family: 'Lato', sans-serif;
+}
+* a {
+    text-decoration: none;
+    color: rgb(59, 59, 59);
+}
+* a:hover {
+    color: rgb(59, 59, 59, 0.70);
 }
 body {
     background-color:rgb(241, 241, 241);
@@ -10,7 +18,6 @@ body {
 footer {
     background-color: rgb(182, 182, 182);
     text-align: center;
-    font-family: 'Lato', sans-serif;
     font-size: 11px;
     font-weight: 600;
     color: rgb(59, 59, 59);
@@ -42,4 +49,16 @@ footer a:visited {
 .center-piece img {
     display: block;
     margin: auto;
+}
+.container-header-menu {
+    display: flex;
+    padding: 35px 50px 35px 20px;
+    justify-content: space-between;
+}
+.header-menu ul {
+    display: flex;
+    justify-content: flex-end;
+}
+.header-menu li {
+    margin: 0 22px;
 }

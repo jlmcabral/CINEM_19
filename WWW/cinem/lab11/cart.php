@@ -36,7 +36,6 @@
     }
     print "  </tr>\n";
 
-
     $nprod = $total = 0;
 
     foreach( $_SESSION['cart'] as $sku => $quant)
@@ -59,6 +58,7 @@
         print "  </tr>";
 
 
+        var_dump($row);
         print "\n quantidade".$row['Quantidade'];
 
         foreach ($row as $val => $q) {~

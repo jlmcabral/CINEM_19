@@ -6,24 +6,44 @@ include ("functions.php");
 // Just for reusability purposes
 function printHeaderMenu()
 {   
-    // Language
-    print " <p>".translate(Lang).": ";
-    print "   <a href='?lang=pt'>[Portugu&ecirc;s]</a>";
-    print "   <a href='?lang=en'>[English]</a>";
-    print " </p>";
+    
 
     // Menu
     print
+    "   
+        <div class='container-header-menu'> 
+    ";
+        if($_SESSION['lang']=='pt'){
+            print
+            "
+                <div class='language'>
+                    <a href='?lang=en'>[English]</a>
+                </div> 
+            ";
+        } else {
+            print
+            "
+                <div class='language'>
+                    <a href='?lang=pt'>[Portugu&ecirc;s]</a>
+                </div> 
+            ";
+        }
+
+        print
+        "
+            <div class='header-menu'>
+                <ul>
+                    <li><a href='index.php'>".translate(Home)."</a></li>
+                    <li><a href='products.php'>".translate(Products)."</a></li>
+                    <li><a href='contacts.php'>".translate(Contacts)."</a></li>
+                    <li><a href='user.php'>".translate(User_account)."</a></li>
+                    <li><a href='cart.php'>".translate("Cart-title")."</a></li>
+                </ul>
+            </div>
+            ";
+    print
     "
-        <div class='header-menu'>
-            <ul>
-                <li><a href='index.php'>".translate(Home)."</a></li>
-                <li><a href='products.php'>".translate(Products)."</a></li>
-                <li><a href='contacts.php'>".translate(Contacts)."</a></li>
-                <li><a href='user.php'>".translate(User_account)."</a></li>
-                <li><a href='cart.php'>".translate("Cart-title")."</a></li>
-            </ul>
-        </div>
+    </div>
     ";
 }
 
