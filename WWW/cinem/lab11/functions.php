@@ -142,6 +142,85 @@ function getProductDetails($sku)
     mysqli_close( $conn );
 }
 
+// Get orders per user and show state
+function getOrders() {
+
+    $conn = ligaDB();
+    $query = "SELECT DISTINCT ClientID FROM Orders";
+    
+    $usersWithOrders = $conn->query($query);
+
+    if ($usersWithOrders->num_rows > 0)
+    {   
+        for ($i=0; $i < $usersWithOrders->num_rows; $i++)
+        { 
+            $user = $usersWithOrders->fetch_assoc();
+        
+            $client = $user['ClientID'];
+            print "<div>";
+                print translate('Orders of')."$client:";
+            print "</div>";
+
+            $query = "SELECT * FROM Orders WHERE ClientID = '$client'";
+            $ordersByUser = $conn->query($query);
+            
+            print "<div>";
+                print "<div class='table-wrapper'>";
+                print "<table class='generic-table'>";
+                    print "  <tr>";
+                        $fields = array('OrdID','Date','ClientID','State');
+                            
+                        foreach( $fields as $field ) {
+                            print "    <th>" .translate($field). "</th>";
+                        }
+                    print "  </tr>";
+                        
+                    for ($j=0; $j < $ordersByUser->num_rows; $j++)
+                    { 
+                        $order = $ordersByUser->fetch_assoc();
+                        
+                        print "  <tr>"; 
+                        foreach ( $order as $fname => $val ){
+                            print "<td>$val</td>";
+                        }
+                        print "  </tr>";
+                    }
+                        
+                    print "</table>";
+                print "</div>";
+            print "</div>";
+        }
+    }
+
+    // // $result = $conn->query($query);
+
+    // if ($result->num_rows > 0)
+    // {
+    //     $row = $result->fetch_assoc();
+        
+    //     print "<div  class='product-container'>";
+    //         print "<div>";
+    //             print "<img src='img/".$row['Sku']."_g.jpg'>";
+    //         print "</div>";
+    //         print "<div class='table-wrapper'>";
+    //             print "<table class='generic-table'>";
+    //                 print "<tr>";
+    //                 foreach($row as $fname => $val) {
+    //                     print "<th>".translate($fname)."</th><td>".translate($val)."</td><tr>";
+    //                 }
+    //                 print "</tr>";
+    //             print " </table>";
+    //         print "</div>";
+    //     print "</div>";
+
+    // }
+    // else
+    // {
+    //     print translate("No data");
+    // }
+    mysqli_close( $conn );
+}
+
 function previousPage()
 {
     print "<a href='#' onclick='history.go(-1)'>".translate("Previous page")."</a>\n";
@@ -156,14 +235,25 @@ function translate( $word )
 }
 
 function submitOrder() {
-    print "<h2>". translate("Order"). "</h2>\n";
-    print "<form action='order.php' method=GET>\n";
-    print translate("Email").  ": <input name=email> <br>\n";
-    print translate("Name").  ": <input name=name> <br>\n";
-    print translate("Address").  ": <input name=address> <br> \n";
-    print translate("Phone").": <input name=phone> <br>\n";
-    print "<input type=submit value='". translate("ToOrder"). "'>\n";
-    print "</form>\n";
+
+    print "<div class='submit-order'>";
+        print "<form action='order.php' method=GET>";
+            print "<div class='justify-right'>";
+                print translate("Email").    ": <input name=email> <br>";
+            print "</div>";
+            print "<div class='justify-right'>";
+                print translate("Name").     ": <input name=name> <br>";
+            print "</div>";
+            print "<div class='justify-right'>";
+                print translate("Address").  ": <input name=address> <br>";
+            print "</div>";
+            print "<div class='justify-right'>";
+                print translate("Phone").": <input name=phone> <br>";
+            print "</div>";
+            
+            print "<input type=submit value='".translate("ToOrder")."'>";
+        print "</form>";
+    print "</div>";
 }
 
 ?>

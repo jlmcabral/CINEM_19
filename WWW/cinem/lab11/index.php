@@ -16,7 +16,7 @@
     <title>Microgreens Porto</title>
     <link rel="stylesheet" href="styles/home.css">
 </head>
-<body>
+<body class="homepage">
 
 <?php printHeaderMenu();?>
 

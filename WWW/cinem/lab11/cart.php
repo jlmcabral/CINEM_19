@@ -69,6 +69,7 @@
     print "</div>";
 
     // Submeter encomenda
+    print "<h2>". translate("Order"). "</h2>";
     submitOrder();
 ?>
 

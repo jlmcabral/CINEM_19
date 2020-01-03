@@ -17,8 +17,11 @@
 
 <?php printHeaderMenu();?>
 
-<?php
-    print "<h1>".translate(User_account)."</h1>\n";
+<?php print "<h1>".translate(User_account)."</h1>"; ?>
+
+<?php 
+
+    getOrders();
 
 ?>
 

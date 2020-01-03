@@ -29,7 +29,9 @@ $Langs['Email']             = array('en'=>'Email', 'pt'=>'Email');
 $Langs['Address']           = array('en'=>'Address', 'pt'=>'Morada');
 $Langs['Phone']             = array('en'=>'Phone', 'pt'=>'Telefone');
 $Langs['Order By']          = array('en'=>'Order By', 'pt'=>'Ordenar Por');
-$Langs['ToOrder']           = array('en'=>'Order', 'pt'=>'Encomendar');
+$Langs['ToOrder']           = array('en'=>'Place Order', 'pt'=>'Fazer Encomenda');
+$Langs['State']             = array('en'=>'Order State', 'pt'=>'Estado da Encomenda');
+$Langs['Date']              = array('en'=>'Order Placed In', 'pt'=>'Encomenda Submetida Em');
 
 // Product Names
 $Langs['Alface']             = array('en'=>'Lettuce', 'pt'=>'Alface');
@@ -43,5 +45,7 @@ $Langs['Ramos de pinho']     = array('en'=>'Pine Branches', 'pt'=>'Ramos de Pinh
 $Langs['microgreens slogan']       = array('en'=>'Your Northern Microgreens Store', 'pt'=>'A Sua Loja de Microgreens no Norte');
 $Langs['microgreens presentation'] = array('en'=>'In Microgreens Porto we focus in growing high quality microgreens. Our goal is to have the best ratio of price/quality.', 'pt'=>'Na Microgreens Porto focamo-nos em produzir microgreens de elevada qualidade! O nosso objetivo &eacute; ter a melhor rela&ccedil;&atilde;o qualidade/pre&ccedil;o do mercado.');
 $Langs['see products'] = array('en'=>'See Products', 'pt'=>'Ver Produtos');
+$Langs['Order Confirmation'] = array('en'=>'Your order has been placed!', 'pt'=>'A sua encomenda foi submetida!');
+$Langs['Orders of'] = array('en'=>'Orders of ', 'pt'=>'Encomendas de ');
 
 ?>

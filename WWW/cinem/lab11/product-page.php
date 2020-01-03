@@ -21,11 +21,10 @@
     
     getProductDetails($sku);
 
-    print "</br>";
-    print "<a href='cart.php?buy=$sku'>[" .translate(Cart) . "]</a>";
-    print "</br>";
-    
-    previousPage();
+    print "<div class='product-buttons'>";
+        print "<p><a href='cart.php?buy=$sku'>[" .translate(Cart) . "]</a></p>";
+        previousPage();
+    print "</div>";
 ?>
     <footer>
         <p>&copy; Microgreens Porto <?php echo date("Y");?>. <?php print translate(all_rights);?></p>

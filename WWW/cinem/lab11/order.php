@@ -49,20 +49,15 @@
             "'". $_GET['name'].    "', " . 
             "'". $_GET['address']. "', " . 
             "'". $_GET['phone'].   "' " ;
-    //Log
+    
     $query = "REPLACE INTO Clients VALUE ($data)";
-    // Print "\n Query = ".$query."\n";
     
     $result = $conn->query($query); 
-    // Print "1: ".$result;
     
-    // Registar Encomenda
     $data = "Now(), '".$_GET['email'] . "'";
-    $query = "INSERT INTO Orders(Date, ClientID) VALUE ($data)";
-    // Print "\n Query = ".$query."\n";
+    $query = "INSERT INTO Orders(Date, ClientID, State) VALUE ($data, 'Pending')";
     $result = $conn->query($query); 
-    // Print "2: ".$result;
-    
+
     // Obter nr de encomenda
     $res = mysqli_query($conn, "SELECT OrdID FROM Orders ORDER BY Date DESC");
     $row = mysqli_fetch_row($res);
@@ -72,14 +67,15 @@
     foreach( $_SESSION['cart'] as $sku => $qtd ){
         
         $query = "INSERT INTO OrdProducts VALUE ('$ordID','$sku',$qtd)";
-        Print "\n Query = ".$query."\n";
-        
         $result = $conn->query($query); 
-        // Print "3: ".$result;
     }
         
     // Esvaziar carrinho
     unset($_SESSION['cart']);
+
+    print "<div class='order-confirmation'>";
+        print translate('Order Confirmation');
+    print "</div>";
 
 ?>
 
