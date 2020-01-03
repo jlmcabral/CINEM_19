@@ -108,10 +108,8 @@ function listProducts()
     mysqli_close( $conn );
 }
 
-function getProductDetails()
+function getProductDetails($sku)
 {   
-    $sku = $_SESSION['sku'];
-
     $conn = ligaDB();
     $query = "SELECT * FROM Produtos WHERE Sku = '$sku'";
 
@@ -121,15 +119,21 @@ function getProductDetails()
     {
         $row = $result->fetch_assoc();
         
-        print "<div class='table-wrapper'>";
-            print "<table class='generic-table'>";
-                print "<tr> \n";
-                foreach($row as $fname => $val) {
-                    print "<th>".translate($fname)."</th><td>$val</td><tr>\n";
-                }
-                print "</tr> \n";
-                print " </table> \n";
-            print "</div> \n";
+        print "<div  class='product-container'>";
+            print "<div>";
+                print "<img src='img/".$row['Sku']."_g.jpg'>";
+            print "</div>";
+            print "<div class='table-wrapper'>";
+                print "<table class='generic-table'>";
+                    print "<tr>";
+                    foreach($row as $fname => $val) {
+                        print "<th>".translate($fname)."</th><td>".translate($val)."</td><tr>";
+                    }
+                    print "</tr>";
+                print " </table>";
+            print "</div>";
+        print "</div>";
+
     }
     else
     {

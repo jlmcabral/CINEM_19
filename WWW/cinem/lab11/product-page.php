@@ -19,7 +19,7 @@
     $sku = $_SESSION["sku"];
     print "<h1>".translate('Product')." $sku</h1>\n";
     
-    getProductDetails();
+    getProductDetails($sku);
 
     print "</br>";
     print "<a href='cart.php?buy=$sku'>[" .translate(Cart) . "]</a>";

@@ -33,7 +33,7 @@ $Langs['ToOrder']           = array('en'=>'Order', 'pt'=>'Encomendar');
 
 // Product Names
 $Langs['Alface']             = array('en'=>'Lettuce', 'pt'=>'Alface');
-$Langs['R�cula']             = array('en'=>'Arugula', 'pt'=>'R&uacute;cula');
+$Langs['Rucula']             = array('en'=>'Arugula', 'pt'=>'R&uacute;cula');
 $Langs['Funcho']             = array('en'=>'Fennel', 'pt'=>'Funcho');
 $Langs['Alface especial']    = array('en'=>'Special Lettuce', 'pt'=>'Alface Especial');
 $Langs['Ramos de oliveira']  = array('en'=>'Olive Branches', 'pt'=>'Ramos de Oliveira');
