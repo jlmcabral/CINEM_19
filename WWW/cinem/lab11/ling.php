@@ -10,6 +10,7 @@ $Langs['Prazo_entrega']     = array('en'=>'Time to delivery', 'pt'=>'Tempo de en
 $Langs['Quantity']          = array('en'=>'Quantity', 'pt'=>'Quantidade');
 $Langs['Total']             = array('en'=>'Total', 'pt'=>'Total');
 $Langs['Home']              = array('en'=>'Home', 'pt'=>'P&aacute;gina Inicial');
+$Langs['Product']           = array('en'=>'Product', 'pt'=>'Produto');
 $Langs['Products']          = array('en'=>'Products', 'pt'=>'Produtos');
 $Langs['Contacts']          = array('en'=>'Contacts', 'pt'=>'Contactos');
 $Langs['User_account']      = array('en'=>'User Account', 'pt'=>'Conta de utilizador');
@@ -27,7 +28,20 @@ $Langs['Order']             = array('en'=>'Order', 'pt'=>'Encomenda');
 $Langs['Email']             = array('en'=>'Email', 'pt'=>'Email');
 $Langs['Address']           = array('en'=>'Address', 'pt'=>'Morada');
 $Langs['Phone']             = array('en'=>'Phone', 'pt'=>'Telefone');
-$Langs['Order']             = array('en'=>'Order', 'pt'=>'Encomenda');
-$Langs['ToOrder']           = array('en'=>'Place Order', 'pt'=>'Efetuar encomenda');
+$Langs['Order By']          = array('en'=>'Order By', 'pt'=>'Ordenar Por');
+$Langs['ToOrder']           = array('en'=>'Order', 'pt'=>'Encomendar');
+
+// Product Names
+$Langs['Alface']             = array('en'=>'Lettuce', 'pt'=>'Alface');
+$Langs['R�cula']             = array('en'=>'Arugula', 'pt'=>'R&uacute;cula');
+$Langs['Funcho']             = array('en'=>'Fennel', 'pt'=>'Funcho');
+$Langs['Alface especial']    = array('en'=>'Special Lettuce', 'pt'=>'Alface Especial');
+$Langs['Ramos de oliveira']  = array('en'=>'Olive Branches', 'pt'=>'Ramos de Oliveira');
+$Langs['Ramos de pinho']     = array('en'=>'Pine Branches', 'pt'=>'Ramos de Pinho');
+
+// Presentation texts
+$Langs['microgreens slogan']       = array('en'=>'Your Northern Microgreens Store', 'pt'=>'A Sua Loja de Microgreens no Norte');
+$Langs['microgreens presentation'] = array('en'=>'In Microgreens Porto we focus in growing high quality microgreens. Our goal is to have the best ratio of price/quality.', 'pt'=>'Na Microgreens Porto focamo-nos em produzir microgreens de elevada qualidade! O nosso objetivo &eacute; ter a melhor rela&ccedil;&atilde;o qualidade/pre&ccedil;o do mercado.');
+$Langs['see products'] = array('en'=>'See Products', 'pt'=>'Ver Produtos');
 
 ?>

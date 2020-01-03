@@ -12,8 +12,41 @@ function ligaDB()
     return $connection;
 }
 
+function filterOnLeftMenu()
+{   
+    print "<div>";
+        print "<p>".translate(Filter)."</p>";
+    print "</div>";
 
-function listProducts()
+    print "<form method=GET action=products.php>";
+    print "  <input type=hidden name='order' value='".$_SESSION['order']."'>";
+    print "  <input name='filter' value='".$_SESSION['filter']."' size=25>";
+    print "  <input type=submit value='>'>";
+    print "</form>";
+}
+
+function orderOnLeftMenu()
+{   
+    $result = queryProducts();
+
+    print "<div class='order-by-section'>";
+        print "<div>";
+            print "<p>".translate('Order By').":</p>";
+        print "</div>";
+        
+        $row = $result->fetch_assoc();
+        
+        print "<div class='order-options'>";
+        foreach($row as $name => $val) {
+            print "<div>";
+            print "<a href='?order=$name'>".translate($name)."</a>"; 
+            print "</div>";
+        }
+        print "</div>";
+    print "</div>";
+}
+
+function queryProducts()
 {
     $conn = ligaDB();
     $query = "SELECT * FROM Produtos";
@@ -22,46 +55,54 @@ function listProducts()
     if ($filter != "") $query .= " WHERE CONCAT (Produtos.Sku,Produtos.Name,Produtos.Nome_cientifico) LIKE '%$filter%'";
     $orderBy = $_SESSION['order'];
     if ($orderBy != "") $query .= " ORDER BY Produtos.$orderBy";
-    
-    print "<p>$orderBy</p>";
-
-    print "<form method=GET action=products.php>";
-    print "  <input type=hidden name='order' value='$orderBy'>";
-    print translate(Filter);
-    print "  <input name='filter' value='".$_SESSION['filter']."' size=15>";
-    print "  <input type=submit value='>'>";
-    print "</form>";
-
-
-    print "<p>$query</p>";
-
+      
     $result = $conn->query($query);
+    // print "<p>$query</p>";
 
-    if ($result->num_rows > 0) {
+    mysqli_close( $conn );
+    
+    return $result;
+}
+
+
+function listProducts()
+{
+    $result = queryProducts();
+    
+    if($result->num_rows > 0 ) 
+    {  
+        print "<div class='products-row'>";
         
-        print " <table> \n";
-        $row = $result->fetch_assoc();
-        print "<tr> \n";
-        foreach($row as $name => $val) {
-            print "<th>". orderTableBySelectingTableHeader( $name, $filter ) ."</th> \n";
+        // Loop through all the products retrieved from the DB
+        for ($i = 0; $i < $result->num_rows; $i++)
+        {   
+            $row = $result->fetch_assoc();
+    
+            print "<div class='product-element-wrapper'>";
+
+                print "<a href='product-page.php?sku=".$row['Sku']."'>";
+                    print "<div class='product-element'>";
+                        print "<div>";
+                            print "<img src='img/".$row['Sku'].".jpg'>";
+                        print "</div>";
+                        print "<div>";
+                            print "<p>".translate($row['Name'])."</p>";
+                        print "</div>";
+                        print "<div>";
+                            print "<p>".$row['Sku']."</p>";
+                        print "</div>";
+                        print "<div>";
+                            print "<p>".$row['Price']." &euro;</p>";
+                        print "</div>";
+                    print "</div>";
+                print "</a>";
+
+            print "</div>";
         }
-        print "</tr> \n";
-        $result->data_seek(0);
-        
-        while ( $row = $result->fetch_row()) {
-            print "<tr> \n";
-            foreach ($row as $val) {
-                print "<td>$val</td> \n";
-            }
-            print "<td> <a href='product-page.php?sku=$row[0]'> +info </a> </td>\n";
-            print "</tr> \n";
-        }//while
-        print " </table> \n";
+        print "</div>";
     }
-    else
-    {
-        print translate("No results");
-        echo "0 resultados";
+    else {
+        print "<div>".translate("No results")."</div>";
     }
 
     mysqli_close( $conn );
@@ -79,13 +120,16 @@ function getProductDetails()
     if ($result->num_rows > 0)
     {
         $row = $result->fetch_assoc();
-        print " <table> \n";
-        print "<tr> \n";
-        foreach($row as $fname => $val) {
-            print "<tr><th>".translate($fname)."</th><td>$val</td><tr>\n";
-        }
-        print "</tr> \n";
-        print " </table> \n";
+        
+        print "<div class='table-wrapper'>";
+            print "<table class='generic-table'>";
+                print "<tr> \n";
+                foreach($row as $fname => $val) {
+                    print "<th>".translate($fname)."</th><td>$val</td><tr>\n";
+                }
+                print "</tr> \n";
+                print " </table> \n";
+            print "</div> \n";
     }
     else
     {
@@ -99,18 +143,23 @@ function previousPage()
     print "<a href='#' onclick='history.go(-1)'>".translate("Previous page")."</a>\n";
 }
 
-function orderTableBySelectingTableHeader( $orderField, $filter ) 
-{   
-    $order = $orderField . "&amp;filter=$filter";
-    return "<a href='?order=$order'>".translate($orderField)."</a>"; 
-}
-
 function translate( $word )
 {
     include ("ling.php");
     if (isset( $Langs[$word][$_SESSION['lang']] ))
         return $Langs[$word][$_SESSION['lang']];
     return $word;
+}
+
+function submitOrder() {
+    print "<h2>". translate("Order"). "</h2>\n";
+    print "<form action='order.php' method=GET>\n";
+    print translate("Email").  ": <input name=email> <br>\n";
+    print translate("Name").  ": <input name=name> <br>\n";
+    print translate("Address").  ": <input name=address> <br> \n";
+    print translate("Phone").": <input name=phone> <br>\n";
+    print "<input type=submit value='". translate("ToOrder"). "'>\n";
+    print "</form>\n";
 }
 
 ?>

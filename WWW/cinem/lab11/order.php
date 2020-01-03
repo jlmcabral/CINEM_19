@@ -50,19 +50,18 @@
             "'". $_GET['address']. "', " . 
             "'". $_GET['phone'].   "' " ;
     //Log
-    // print $data;
     $query = "REPLACE INTO Clients VALUE ($data)";
-    Print "\n Query = ".$query."\n";
+    // Print "\n Query = ".$query."\n";
     
     $result = $conn->query($query); 
-    Print "1: ".$result;
+    // Print "1: ".$result;
     
     // Registar Encomenda
     $data = "Now(), '".$_GET['email'] . "'";
     $query = "INSERT INTO Orders(Date, ClientID) VALUE ($data)";
-    Print "\n Query = ".$query."\n";
+    // Print "\n Query = ".$query."\n";
     $result = $conn->query($query); 
-    Print "2: ".$result;
+    // Print "2: ".$result;
     
     // Obter nr de encomenda
     $res = mysqli_query($conn, "SELECT OrdID FROM Orders ORDER BY Date DESC");
@@ -76,7 +75,7 @@
         Print "\n Query = ".$query."\n";
         
         $result = $conn->query($query); 
-        Print "3: ".$result;
+        // Print "3: ".$result;
     }
         
     // Esvaziar carrinho

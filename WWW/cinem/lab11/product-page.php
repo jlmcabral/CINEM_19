@@ -17,12 +17,14 @@
 <?php printHeaderMenu();?>
 <?php
     $sku = $_SESSION["sku"];
-    print "<h1>Produto $sku</h1>\n";
+    print "<h1>".translate('Product')." $sku</h1>\n";
     
     getProductDetails();
 
+    print "</br>";
     print "<a href='cart.php?buy=$sku'>[" .translate(Cart) . "]</a>";
-
+    print "</br>";
+    
     previousPage();
 ?>
     <footer>

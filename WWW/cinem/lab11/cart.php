@@ -26,63 +26,50 @@
     print "<h1>".translate("Cart-title")."</h1>\n";
     
     $conn = ligaDB();
-    print "<table>\n";
 
-    print "  <tr>\n";
-    $fields = array('Sku','Name','Nome_cientifico','Price','Quantity','Total');
-    
-    foreach( $fields as $c ) {
-        print "    <th>" .translate($c). "</th>\n";
-    }
-    print "  </tr>\n";
-
-    $nprod = $total = 0;
-
-    foreach( $_SESSION['cart'] as $sku => $quant)
-    {  
-        $fields = "Sku, Name, Nome_cientifico, Price";
-        $fields .= ", '$quant' as Quantidade, Price * $quant as Total";
-        $query = "SELECT $fields FROM Produtos WHERE Sku='$sku'";  
+    print "<div class='table-wrapper'>";
+        print "<table class='generic-table'>";
+            print "  <tr>";
+                $fields = array('Sku','Name','Nome_cientifico','Price','Quantity','Total');
+                
+                foreach( $fields as $c ) {
+                    print "    <th>" .translate($c). "</th>\n";
+                }
+            print "  </tr>\n";
             
-        // Consulta BD
-        $result = mysqli_query($conn, $query);
-        if ( ! $result ) echo "erro sql\n";
-        
-        $row = mysqli_fetch_row($result);
-        // var_dump($row);
-        
-        // Print row content
-        print "  <tr>\n";
-        foreach ( $row as $val )
-        print "         <td>$val</td> \n";
-        print "  </tr>";
+            $nprod = $total = 0;
+            $row = null;
+            
+            foreach( $_SESSION['cart'] as $sku => $quant)
+            {  
+                $fields = "Sku, Name, Nome_cientifico, Price";
+                $fields .= ", '$quant' as Quantidade, Price * $quant as Total";
+                $query = "SELECT $fields FROM Produtos WHERE Sku='$sku'";  
+                
+                // Consulta BD
+                $result = mysqli_query($conn, $query);
+                if ( ! $result )
+                echo "erro sql\n";
+                
+                $row = mysqli_fetch_assoc($result);
+                
+                // Print row content
+                print "  <tr>\n"; 
+                    foreach ( $row as $val ){
+                        print "<td>$val</td>";
+                    }
+                print "  </tr>";
+                
+                $nprod += $row['Quantidade'];
+                $total += $row['Total'];
+            }
+            
+            print "  <tr> <th colspan=4>Total</th> " . "  <td>$nprod</td> <td>$total &euro;</td></tr>\n"; 
+        print "</table>";
+    print "</div>";
 
-
-        var_dump($row);
-        print "\n quantidade".$row['Quantidade'];
-
-        foreach ($row as $val => $q) {~
-
-            print $q[5];
-            $nprod += $row['Quantidade'];
-            $total += $row['Total'];
-        }
-    }
-
-    print "  <tr> <th colspan=4>Total</th> " . "  <td>$nprod</td> <td>$total</td> </tr>\n"; 
-
-    print "</table>\n";
-?>
-<!-- Submeter encomenda -->
-<?php 
-    print "<h2>". translate("Order"). "</h2>\n";
-    print "<form action='order.php' method=GET>\n";
-    print translate("Email").  ": <input name=email> <br>\n";
-    print translate("Name").  ": <input name=name> <br>\n";
-    print translate("Address").  ": <input name=address> <br> \n";
-    print translate("Phone").": <input name=phone> <br>\n";
-    print "<input type=submit value='". translate("ToOrder"). "'>\n";
-    print "</form>\n";
+    // Submeter encomenda
+    submitOrder();
 ?>
 
     <footer>

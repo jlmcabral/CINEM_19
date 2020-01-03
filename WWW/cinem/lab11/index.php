@@ -20,15 +20,18 @@
 
 <?php printHeaderMenu();?>
 
-    <div class="center-piece">
-        <img src="img/home-plant-med-no-prev.png" alt="Home microgreen">
-
-        <!-- <picture>
-            <source media="(min-width: 650px)" srcset="img_pink_flowers.jpg">
-            <source media="(min-width: 465px)" srcset="img_white_flower.jpg">
-            <img src="img_orange_flowers.jpg" alt="Flowers" style="width:auto;">
-        </picture> -->
+    <div class="home-container">
+        <div class='company-logo'>
+            <h2>Microgreens Porto</h2>
+            <p><?php print translate('microgreens slogan');?></p>
+        </div>
+        <div class="home-info">
+            <div><p><span><?php print translate('microgreens presentation');?></span></p></div>
+            <div class="button"><a href='products.php'><?php print translate('see products');?></a></div>
+        </div>
     </div>
+
+
 
 <?php
 
